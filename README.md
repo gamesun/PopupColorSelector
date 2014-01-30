@@ -22,6 +22,8 @@ win.Popup()</pre></code>
 
 
 ## Screenshot
-![](doc/PopupColorSelector_Demo.jpg "screenshot")
+* Demo.py
+![](doc/PopupColorSelector_Demo.jpg)
 
-![](doc/focus.jpg "focus")
+* Highlight on focus
+![](doc/focus.jpg)
