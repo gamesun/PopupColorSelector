@@ -1,7 +1,7 @@
 PopupColorSelector
 ==================
 
-A selection control with a drop-down list that can select color based on wxPython.
+The PopupColorSelector is a selection control with a drop-down list that can select color based on wxPython.
 
 ## Usage
 * Make sure that you have [wxPython](http://wxpython.org/) installed.
