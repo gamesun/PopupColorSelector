@@ -4,7 +4,7 @@ PopupColorSelector
 The PopupColorSelector is a selection control with a drop-down list that can select color based on wxPython.
 
 ## Usage
-* Make sure that you have [wxPython](http://wxpython.org/) installed.
+* Make sure that you have [wxPython](http://wxpython.org/) installed.(wx3.0 is recommended, there is a bug when using wx2.8)
 * Demo.py is an example of using the popupColorSelector.
 
 1. Bind a handle to EVT_COLOR_SELECT.
