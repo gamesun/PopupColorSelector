@@ -32,7 +32,7 @@
 #
 
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __date__ = '2014-1-30'
 __author__ = 'gamesun'
 __credits__ = ['Metallicow']
@@ -42,6 +42,9 @@ __url__ = 'https://github.com/gamesun/PopupColorSelector'
 
 import wx
 
+
+COLOR_PAD_ROW_NUM = 0
+COLOR_PAD_COL_NUM = 5
 
 ColorTable = (
     (wx.Colour(255, 255, 0),    u"Yellow"   ),      # 0
@@ -83,7 +86,7 @@ class PopupColorSelector(wx.PopupTransientWindow):
 
         self.SetBackgroundColour(wx.Colour(255, 255, 255))
         bSizer1 = wx.BoxSizer(wx.VERTICAL)
-        gSizer1 = wx.GridSizer(0, 5, 0, 0)
+        gSizer1 = wx.GridSizer(COLOR_PAD_ROW_NUM, COLOR_PAD_COL_NUM, 0, 0)
 
         for i in range(15):
             exec("self.m_staticText%d = wx.StaticText(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size(24, 24), 0)" % i)
@@ -135,10 +138,14 @@ class PopupColorSelector(wx.PopupTransientWindow):
         if self.focus is idx:
             # Draw the inner border of focused color
             dc.SetPen(wx.Pen(wx.Colour(255, 226, 148)))
-            dc.SetBrush(wx.Brush(wx.Colour(255, 255, 255), wx.BRUSHSTYLE_TRANSPARENT))
-            rect = eval("self.m_staticText%d.GetClientRect()" % idx)
-            dc.DrawRectangle(*rect)
-
+            dc.SetBrush(wx.Brush(ColorTable[idx][0], wx.SOLID))
+        else:
+            dc.SetPen(wx.TRANSPARENT_PEN)
+            dc.SetBrush(wx.Brush(ColorTable[idx][0], wx.SOLID))
+        
+        rect = eval("self.m_staticText%d.GetClientRect()" % idx)
+        dc.DrawRectangle(*rect)
+        
         evt.Skip()
 
     def OnPaint_Window(self, evt = None):
@@ -147,7 +154,7 @@ class PopupColorSelector(wx.PopupTransientWindow):
 
         # Draw the border of PopupWindow
         dc.SetPen(wx.Pen(wx.Colour(134, 134, 134)))
-        dc.SetBrush(wx.Brush(wx.Colour(255, 255, 255), wx.BRUSHSTYLE_TRANSPARENT))
+        dc.SetBrush(wx.TRANSPARENT_BRUSH)
         rect = self.GetClientRect()
         dc.DrawRectangle(*rect)
 
